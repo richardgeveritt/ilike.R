@@ -1,10 +1,10 @@
-Package: ggsmc
+Package: ilike.R
 Type: Package
-Title: Visualising output from SMC samplers and EnK methods.
+Title: ilike functions in R.
 Version: 0.1.1.0
 Author: Richard Everitt
 Maintainer: The package maintainer <richard.g.everitt@gmail.com>
-Description: Visualising output from SMC samplers and EnK methods.
+Description: ilike functions in R.
 License: BSD 2-Clause License
 Encoding: UTF-8
 LazyData: true
@@ -12,7 +12,7 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 URL: https://github.com/maugu/ilike
 BugReports: https://github.com/maugu/ilike.output/issues
-Imports: tidyr, ggplot2, gganimate, dplyr, gifski
+Imports: tidyr
 Suggests: knitr, rmarkdown, testthat
 VignetteBuilder: knitr
 Depends: 
