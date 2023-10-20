@@ -33,10 +33,13 @@ active_subspace_eigen_decomposition <- function(sampler_output,
                                                    single_point,
                                                    data)
 
-  all_gradients = as.matrix(sapply(1:nrow(parameters[[parameter_names[1]]]),FUN=function(i){ single_point = get_single_point_from_list_of_matrices(parameters,parameter_names,i); return(evaluate_gradient_log_likelihoods_all_parameters(model,
+  number_of_points = nrow(parameters[[parameter_names[1]]])
+
+  all_gradients = as.matrix(sapply(1:number_of_points,FUN=function(i){ single_point = get_single_point_from_list_of_matrices(parameters,parameter_names,i); return(evaluate_gradient_log_likelihoods_all_parameters(model,
                                                                                                                                                                                                                                 parameter_names,
                                                                                                                                                                                                                                 single_point,
                                                                                                                                                                                                                                 data)) } ))
+  for_eigen = lapply(1:number_of_points,FUN = function(i) { all_gradients[i,] %*% t(all_gradients[i,]) } )
 
-  return(eigen(t(all_gradients) %*% all_gradients))
+  return(eigen((1/number_of_points)*Reduce('+', for_eigen)))
 }
