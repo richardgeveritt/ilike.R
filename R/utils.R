@@ -9,6 +9,17 @@ extract_single_parameter_to_matrix <- function(output,parameter_name)
   new_variable_names = mapply(FUN = function(a,b) { paste(a,"_",b,sep="") },output$ParameterName,output$Dimension)
   output = subset(output,select = -c(ParameterName,Dimension))
   output = subset(output,select = -c(Time,NormalisingConstant,ISESS))
+
+  if ("AncestorIndex" %in% names(output))
+  {
+    output = subset(output,select = -c(AncestorIndex))
+  }
+
+  if ("LogWeight" %in% names(output))
+  {
+    output = subset(output,select = -c(LogWeight))
+  }
+
   output$Parameter = new_variable_names
   output = dplyr::distinct(output)
 
@@ -214,6 +225,7 @@ sampler_output_to_list_of_matrices <- function(sampler_output)
 
 sampler_output_log_weights_to_list_of_matrices <- function(sampler_output)
 {
+  sampler_output = dplyr::filter(sampler_output,Dimension==1)
   if ( ("ExternalIndex" %in% names(sampler_output)) && (length(unique(sampler_output$ExternalIndex))>1) )
   {
     stop('sampler_output contains an ExternalIndex with more than one value: not yet supported in sampler_output_to_parameter_list.')
@@ -250,7 +262,7 @@ sampler_output_log_weights_to_list_of_matrices <- function(sampler_output)
 
 get_single_point_from_list_of_matrices <- function(parameters,parameter_names,i)
 {
-  parameter_list = lapply(parameter_names,FUN = function(n) { return(parameters[[n]][i,1]) } )
+  parameter_list = lapply(parameter_names,FUN = function(n) { return(parameters[[n]][i,]) } )
   names(parameter_list) = parameter_names
   return(parameter_list)
 }
