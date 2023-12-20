@@ -56,7 +56,7 @@ evaluate_gradient_log_likelihood <- function(factor,
 
 #' Evaluate the log of the factors in the model.
 #'
-#' @param model The output of calling ilike::parse_ilike_model on a file.
+#' @param model The output of calling ilike::compile on a file.
 #' @param parameters A list containing the parameters.
 #' @param data A list containing the data.
 #' @param factor_index (optional) The indices giving which factors to evaluate (default is to evaluate all factors in the model).

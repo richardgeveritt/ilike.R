@@ -7,7 +7,7 @@
 evaluate_log_factors(model, parameters, data, factor_index = NULL)
 }
 \arguments{
-\item{model}{The output of calling ilike::parse_ilike_model on a file.}
+\item{model}{The output of calling ilike::compile on a file.}
 
 \item{parameters}{A list containing the parameters.}
 

@@ -4,12 +4,14 @@
 \alias{active_subspace_eigen_decomposition}
 \title{Load the data from the model.}
 \usage{
-active_subspace_eigen_decomposition(sampler_output, model)
+active_subspace_eigen_decomposition(sampler_output, model, use_weights = TRUE)
 }
 \arguments{
 \item{sampler_output}{The output of sampler giving the points we will use to estimate the active subspace, formatted using the ilike::load_xxxx_output functions.}
 
 \item{model}{The output of calling ilike::parse_ilike_model on a file, giving the model for which we wish to find the active subspace.}
+
+\item{use_weights}{(optional) If FALSE, will ignore particle weights in the line graph. If TRUE, will use the particle weights. (defaults to TRUE)}
 }
 \value{
 An eigendecomposition from which we can find the active subspace.
